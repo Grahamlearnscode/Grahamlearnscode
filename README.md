@@ -1,0 +1,1 @@
+Hi, welcome to GrahamLearnsCode's site. I'll be using this site to track my progress in learning to program and to share my portfolio. Nothing much needed in this readme, the site itself will be talking about changes made as I learn how to make it better over time.
