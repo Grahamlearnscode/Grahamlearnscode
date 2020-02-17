@@ -3,3 +3,13 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: #444;
 }
+
+.caption {
+    font-size: smaller;
+    margin-top: 0;
+}
+
+.pullQuote {
+    font-size: large;
+    padding-left: 5%;
+}
