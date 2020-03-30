@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock, Paper, Scissors | GrahamLearnsCode</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Puritan|Ruluko&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="rps-styles.css">
+    <script type="text/javascript" src="rps-script.js"></script>
+
+</head>
+
+<body>
+
+    <h1>Rock, Paper, Scissors</h1>
+
+    
+    <button class='normalButton' id='play' onclick="togglePlayControls()">Play game</button>
+
+    <p class='hidden'>Make your selection:</p>
+    <button class='hidden normalButton' id='Rock' onclick="playRound('Rock')">Rock</button>
+    <button class='hidden normalButton' id='Paper' onclick="playRound('Paper')">Paper</button>
+    <button class='hidden normalButton' id='Scissors' onclick="playRound('Scissors')">Scissors</button>
+
+    <p id='computerText'></p>
+    <p id='resultText'></p>
+    <p id='winnerText'></p>
+
+    <button id='replay' onclick=replay()>Replay?</button>
+
+    <table id='resultsTable' class='inactive' style="width: 300px">
+        <tr><th id='th-main' colspan="3">Leaderboard</th></tr>
+        <tr>
+            <th>Player</th>
+            <th>Computer</th>
+            <th>Draw</th>
+        </tr>
+        <tr>
+            <td id='playerWins'></td>
+            <td id='computerWins'>Data2</td>
+            <td id='draws'>Data3</td>
+        </tr>
+    </table>
+    </div>
+
+<script>
+
+
+
+</script>
+
+
+</body>
+</html>

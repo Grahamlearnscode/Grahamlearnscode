@@ -1,15 +1,28 @@
+/*body text Puritan. Headers Nunito Sans.*/
+
 body {
-    background-color: #eee;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #444;
+    background-color: rgb(68, 72, 87);
+    color: rgb(183, 187, 200);
+    font-family: 'Nunito Sans', sans-serif;
+    /*font-family: trebuchet, Helvetica, sans-serif;*/
+    line-height: 1.3rem;
+}
+
+p {
+    font-family: 'Puritan', sans-serif;
+}
+
+a {
+    color: rgb(163, 172, 200);
 }
 
 .caption {
-    font-size: smaller;
+    font-size: 0.8rem;
     margin-top: 0;
 }
 
 .pullQuote {
-    font-size: large;
+    font-size: 2rem;
     padding-left: 5%;
+    line-height: 1;
 }
