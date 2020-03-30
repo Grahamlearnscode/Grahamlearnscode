@@ -5,37 +5,18 @@ body {
     color: rgb(183, 187, 200);
 }
 
-div {
-    background-color: rgb(68, 72, 87);
-    color: rgb(183, 187, 200);
-}
-
-table, th, td {
-    border: 1px solid rgba(183, 187, 200, 0.7);
-    border-collapse: collapse;
-    margin: 2px 5px;
-    padding: 3px 10px;
-    text-align: center;
-}
-
-table {
-    width: 300px;
-    position: absolute;
-    top: 320px;
-}
-
-#th-main {
-    background-color: rgba(183, 187, 200, 0.15);
-}
-
-a {
-    color: inherit;
-}
-
 p {
     margin-left: 5px;
 }
 
+div#game {
+    width: 35%;
+    display: inline-block;
+    margin-top: 20px;
+    min-width: 300px;
+}
+
+/*//Game controls*/
 .inactive {
     display: none;
 }
@@ -55,4 +36,38 @@ p {
     border-radius: 2%;
     margin-top: 10px;
     margin-left: 5px;
+}
+
+/*//Results table*/
+table, th, td {
+    border: 1px solid rgba(183, 187, 200, 0.7);
+    border-collapse: collapse;
+    margin: 2px 5px;
+    padding: 3px 10px;
+    text-align: center;
+}
+
+table {
+    width: 300px;
+    position: absolute;
+    top: 340px;
+}
+
+#th-main {
+    background-color: rgba(183, 187, 200, 0.15);
+}
+
+/*//Explanation div*/
+div#explanation {
+    width: 60%;
+    float: right;
+    margin-left: 1%;
+    border-left: 2px solid;
+}
+
+#explanation h3 {
+    margin-left: 5px;
+}
+#explanation h3:hover {
+    text-decoration: underline;
 }

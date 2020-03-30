@@ -158,6 +158,19 @@ function fiveRoundGame() {
         }
 }
 
+let chevron=0;
 
-
+function showExplain() {
+    let explainPane=document.querySelector('#explainPane');
+    explainPane.classList.toggle('inactive');
+    if (chevron==0) {
+        document.querySelector('#showExplain').innerHTML='What\'s going on here? &#8964';
+        chevron=1;
+    }
+    else {
+        document.querySelector('#showExplain').innerHTML='What\'s going on here? &#8250';
+        chevron=0;
+    }
+    return chevron;
+}
 

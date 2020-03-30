@@ -5,15 +5,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Puritan|Ruluko&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" type="text/css" href="rps-styles.css">
-    <script type="text/javascript" src="rps-script.js"></script>
-
 </head>
 
 <body>
 
-    <h1>Rock, Paper, Scissors</h1>
+<h1>Rock, Paper, Scissors</h1>
 
-    
+<div id=game>
     <button class='normalButton' id='play' onclick="togglePlayControls()">Play game</button>
 
     <p class='hidden'>Make your selection:</p>
@@ -40,14 +38,28 @@
             <td id='draws'>Data3</td>
         </tr>
     </table>
+</div>
+
+<div id=explanation>
+    <h3 id=showExplain onclick=showExplain()>What's going on here? &#8250</h3>
+    <div id=explainPane class=inactive>
+        <p>The brief was to create a rock/paper/scissors game using javascript. Initially this was just played via console, then a second brief was to refactor this code to work in the page UI via DOM manipulation.</p>
+        <p>On page load, the controls for the game are hidden with a CSS class set to <code>display: none</code>. On click the Play button calls a function that toggles that class.</p>
+        <p>Clicking one of the r/p/s controls calls a function that does quite a lot by calling a number of subfunctions:
+            <ul><li>Highlight the chosen button (as a reminder to the player which option they chose)</li>
+                <li>Store the choice in a variable, based on the HTML button element's ID</li>
+                <li>Disable the play controls by setting <code>disabled = true</code></li>
+                <li>Make a random choice for the computer opponent and store this in a variable
+                    <ul><li>Done by choosing a random number 1-3 using <code>Math.floor(Math.random)</code> where 1=rock, 2=paper, 3=scissors</li></ul></li>
+                <li>Compare playerChoice to computerChoice and determine a winner, done via a <code>switch</code> statement. Store the winner in a variable.</li>
+                <li>Several bits of DOM manipulation done on a timer. As it doesn't look good having multiple elements blink into existence, I found a function that delays the subsequent code from firing.
+                    <ul><li>This is the only piece of code on this project that I didn't write from scratch. I understand what it's capable of but not the moving parts <code>async</code>, <code>await</code> and <code>promise</code>.</li>
+                    <li>This controls the 'choosing...', the computer's choice, the result, the winner declaration, the replay button and the leaderboard table becoming visible over a couple of seconds. The messaging is all DOM manipulation using <code>.textContent</code>.</li>
+                <li>Increment one of three counters based on the winner variable, then write this to the leaderboard table, again using <code>document.querySelector.textContent</code></li></ul></ul></p>
+        <p>Lastly, clicking the Replay button hides the now-irrelevant computer choice and result, and resets the r/p/s controls to their usable state. That removing of the highlight and setting <code>disabled = false</code> is actually part of the function that enabled them when Play was clicked; the Replay button calls that same code.</p>
     </div>
+</div>
 
-<script>
-
-
-
-</script>
-
-
+<script type="text/javascript" src="rps-script.js"></script>
 </body>
 </html>

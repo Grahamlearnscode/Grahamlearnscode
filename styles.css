@@ -9,12 +9,19 @@ body {
     line-height: 1.3rem;
 }
 
+a {
+    color: rgb(163, 172, 200);
+}
+
 p {
     font-family: 'Puritan', sans-serif;
 }
 
-a {
-    color: rgb(163, 172, 200);
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    background-color: rgba(68, 102, 136, 0.5);
+    padding: 0 2px;
 }
 
 /*//Generic items*/
@@ -40,7 +47,7 @@ h2 {
 }
 
 /*//Intro section*/
-p {
+#intro p {
     max-width: 650px;
     margin-bottom: 30px;
 }
