@@ -70,4 +70,5 @@ div#explanation {
 }
 #explanation h3:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
