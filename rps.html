@@ -54,9 +54,9 @@
                 <li>Compare playerChoice to computerChoice and determine a winner, done via a <code>switch</code> statement. Store the winner in a variable.</li>
                 <li>Several bits of DOM manipulation done on a timer. As it doesn't look good having multiple elements blink into existence, I found a function that delays the subsequent code from firing.
                     <ul><li>This is the only piece of code on this project that I didn't write from scratch. I understand what it's capable of but not the moving parts <code>async</code>, <code>await</code> and <code>promise</code>.</li>
-                    <li>This controls the 'choosing...', the computer's choice, the result, the winner declaration, the replay button and the leaderboard table becoming visible over a couple of seconds. The messaging is all DOM manipulation using <code>.textContent</code>.</li>
+                    <li>This controls the 'choosing...' message, the computer's choice, the result, the winner declaration, the replay button and the leaderboard table becoming visible over a couple of seconds. The messaging is all DOM manipulation using <code>.textContent</code>.</li>
                 <li>Increment one of three counters based on the winner variable, then write this to the leaderboard table, again using <code>document.querySelector.textContent</code></li></ul></ul></p>
-        <p>Lastly, clicking the Replay button hides the now-irrelevant computer choice and result, and resets the r/p/s controls to their usable state. That removing of the highlight and setting <code>disabled = false</code> is actually part of the function that enabled them when Play was clicked; the Replay button calls that same code.</p>
+        <p>Lastly, clicking the Replay button hides the now-irrelevant computer choice and result, and resets the r/p/s controls to their usable state. That removing of the highlight and setting <code>disabled = false</code> is actually part of the function that first enabled them when Play was clicked; the Replay button calls that same code.</p>
     </div>
 </div>
 

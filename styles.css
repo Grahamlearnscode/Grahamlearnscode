@@ -28,12 +28,15 @@ code {
 .caption {
     font-size: 0.8rem;
     margin-top: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    opacity: 0.8;
 }
 
 .pullQuote {
     font-size: 2rem;
     padding-left: 5%;
     line-height: 1;
+    font-style: italic;
 }
 
 h2 {
@@ -44,6 +47,28 @@ h2 {
     border-top: 2px solid;
     border-bottom: 2px solid;
     padding: 0 5px;
+}
+
+.footnote {
+    font-size: 0.8rem;
+    margin-top: 24px;
+    margin-bottom: 80px;
+    font-family: 'Nunito Sans', sans-serif;
+    opacity: 0.8;
+}
+
+.footnote p {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+sup a {
+    text-decoration: none;
+}
+
+sup a:hover {
+    text-decoration: underline;
 }
 
 /*//Intro section*/

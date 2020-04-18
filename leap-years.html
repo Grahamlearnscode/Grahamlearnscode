@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Puritan|Ruluko&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Leap Years | GrahamLearnsCode</title>
+  <meta charset="UTF-8"/>
+  
+</head>
+<body>
+
+<h1>Leap Years</h1>
+
+<h2>The function</h2>
+<p>
+<code>
+  const leapYears = function(year) {<br>
+    if (typeof year!=='number'){return 'ERROR';}<br>
+    if (year &lt;= 0){return 'ERROR';}<br>
+    return (year%4 === 0 && year%100 !== 0) || year%400 === 0;<br>
+}
+</code></p>
+
+<p>This was part of the Odin Project's introduction to test-driven development. I kept it around because, after a bunch of exercises where I really had to iterate my way through a bunch of fails and ended up with something pretty messy, I nailed the requirements on this one first time; always a nice feeling. Also I <em>think</em> this is the most efficient way of writing this function.<sup><a href=#footnote1>1</a></sup></p>
+
+<h2>The code</h2>
+<p>1 <code>const leapYears = function(year) {</code><br> 
+  Line 1 is pretty straightforward. Declare the function and tell it to expect the year we're testing as an argument.</p>
+<p>  2 <code>if (typeof year!=='number'){return 'ERROR';}</code><br>
+  Line 2 checks the type of the input to make sure the year that's being tested is a number. If it's not, it throws an error. In production code, this would be more specific; the tests on this project were predefined to expect simply <code>'ERROR'</code></p>
+<p>3 <code>if (year &lt;= 0){return 'ERROR';}</code><br>
+  Line 3 checks the year is positive. If we wanted to get really pedantic here, this check should actually validate whether the year is greater than 1582 when the Gregorian calendar was adopted and we got the modern definition of leap years.<sup><a href=#footnote2>2</a></sup></p>
+<p>4 <code>return (year%4 === 0 && year%100 !== 0) || year%400 === 0;</code><br>
+  And here's the real meat of the function. Something that would have looked like absolute nonsense to me not so long ago. In plain English:
+  <ul>
+    <li>Condition 1: <code>year%4 === 0</code> Divide the year by 4 and check that there's no remainder. Leap years are every four years and fall on the years that are divisible by four.</li>
+    <li>Condition 2: <code>year%100 !== 0</code> Divide the year by 100 and check that there <em>is</em> a remainder. Century years are not leap years. Unless...</li>
+    <li>Condition 3: <code>year%400 === 0</code> Divide the year by 400 and check that there's no remainder. Every <em>fourth</em> century year <em>is</em> a leap year; 2000 was and 2400 will be.</li>
+    <li>Wrap all that up and put it together. Conditions 1 and 2 go hand in hand, if both are true then it's a leap year. Condition 3 is separate, so if <em>both</em> 1 and 2 are true <em>or</em> if 3 is true, it's a leap year.</li>
+    <li><code>return</code> the result of that check; we get a boolean back telling us whether the tested year is or is not a leap year.</li>
+  </ul></p>
+
+
+<h2>The tests</h2>
+
+<p><code>
+  let test1996=leapYears(1996);<br>
+  console.log('1996: '+test1996);<br>
+  let test1901=leapYears(1901);<br>
+  console.log('1901: '+test1901);<br>
+  let test2100=leapYears(2100);<br>
+  console.log('2100: '+test2100);<br>
+</code></p>
+
+<p>The script is running on this page. Open dev tools and check the Console to see the results. Feel free to try some other years by typing <code>leapYears(xxxx)</code> directly into the console with a year in place of xxxx.</p>
+
+<div class="footnote">-----
+  <p><span id="footnote1">1</span>. Well. I didn't actually look up order of operations for the && and || check. The parentheses on line 4 may be unnecessary. But even if that's the case, I'd leave them in for readability.</p>
+  <p><span id="footnote2">2</span>. But then there should be a separate function for Julian calendar years if the number entered is between 45 BC and 1582 AD. And something to indicate that we're purely talking about western/Christian numbering aaaand the whole thing turns into a big can of worms. So yeah, let's just validate that the number we're checking is positive and accept that as being close enough for the purposes of the exercise.</p>
+</div>
+
+
+
+<script>
+const leapYears = function(year) {
+      if (typeof year!=='number'){return 'ERROR';}
+      if (year <= 0){return 'ERROR';}
+      return (year%4 === 0 && year%100 !== 0) || year%400 === 0;
+}
+
+let test1996=leapYears(1996);
+console.log('1996: '+test1996);
+let test1901=leapYears(1901);
+console.log('1901: '+test1901);
+let test2100=leapYears(2100);
+console.log('2100: '+test2100);
+</script>
+
+</body>
+</html>
