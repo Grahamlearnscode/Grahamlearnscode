@@ -15,19 +15,19 @@
 <p>
 <code>
   const leapYears = function(year) {<br>
-    if (typeof year!=='number'){return 'ERROR';}<br>
+    if (typeof year !== 'number'){return 'ERROR';}<br>
     if (year &lt;= 0){return 'ERROR';}<br>
     return (year%4 === 0 && year%100 !== 0) || year%400 === 0;<br>
 }
 </code></p>
 
-<p>This was part of the Odin Project's introduction to test-driven development. I kept it around because, after a bunch of exercises where I really had to iterate my way through a bunch of fails and ended up with something pretty messy, I nailed the requirements on this one first time; always a nice feeling. Also I <em>think</em> this is the most efficient way of writing this function.<sup><a href=#footnote1>1</a></sup></p>
+<p>This was part of the Odin Project's introduction to test-driven development. I kept it around because, after a bunch of exercises in this section where I really had to iterate my way through a bunch of fails and ended up with something pretty messy, I nailed the requirements on this one first time; always a nice feeling and handy to look back on for motivation. Also I <em>think</em> this is the most efficient way of writing this function.<sup><a href=#footnote1>1</a></sup></p>
 
 <h2>The code</h2>
 <p>1 <code>const leapYears = function(year) {</code><br> 
   Line 1 is pretty straightforward. Declare the function and tell it to expect the year we're testing as an argument.</p>
-<p>  2 <code>if (typeof year!=='number'){return 'ERROR';}</code><br>
-  Line 2 checks the type of the input to make sure the year that's being tested is a number. If it's not, it throws an error. In production code, this would be more specific; the tests on this project were predefined to expect simply <code>'ERROR'</code></p>
+<p>  2 <code>if (typeof year !== 'number'){return 'ERROR';}</code><br>
+  Line 2 checks the type of the input to make sure the year that's being tested is a number. If it's not, it throws an error. In production code, the error would be more specific; the tests on this project were predefined to expect simply <code>'ERROR'</code></p>
 <p>3 <code>if (year &lt;= 0){return 'ERROR';}</code><br>
   Line 3 checks the year is positive. If we wanted to get really pedantic here, this check should actually validate whether the year is greater than 1582 when the Gregorian calendar was adopted and we got the modern definition of leap years.<sup><a href=#footnote2>2</a></sup></p>
 <p>4 <code>return (year%4 === 0 && year%100 !== 0) || year%400 === 0;</code><br>
@@ -45,17 +45,17 @@
 
 <p><code>
   let test1996=leapYears(1996);<br>
-  console.log('1996: '+test1996);<br>
+  console.log('1996: '+test1996); //True<br>
   let test1901=leapYears(1901);<br>
-  console.log('1901: '+test1901);<br>
+  console.log('1901: '+test1901); //False<br>
   let test2100=leapYears(2100);<br>
-  console.log('2100: '+test2100);<br>
+  console.log('2100: '+test2100); //False<br>
 </code></p>
 
 <p>The script is running on this page. Open dev tools and check the Console to see the results. Feel free to try some other years by typing <code>leapYears(xxxx)</code> directly into the console with a year in place of xxxx.</p>
 
 <div class="footnote">-----
-  <p><span id="footnote1">1</span>. Well. I didn't actually look up order of operations for the && and || check. The parentheses on line 4 may be unnecessary. But even if that's the case, I'd leave them in for readability.</p>
+  <p><span id="footnote1">1</span>. Well. I didn't actually look up order of operations for the && and || check on line, so it may be the case that the parentheses are unnecessary. But even if that's the case, I'd leave them in for readability.</p>
   <p><span id="footnote2">2</span>. But then there should be a separate function for Julian calendar years if the number entered is between 45 BC and 1582 AD. And something to indicate that we're purely talking about western/Christian numbering aaaand the whole thing turns into a big can of worms. So yeah, let's just validate that the number we're checking is positive and accept that as being close enough for the purposes of the exercise.</p>
 </div>
 
