@@ -40,6 +40,19 @@ code {
     font-style: italic;
 }
 
+.smallPullQuote {
+    font-size: 1.4rem;
+    padding-left: 5%;
+    line-height: 1;
+    font-style: italic;
+}
+
+.conversation {
+    font-style: italic;
+    display: block;
+    margin-left: 5%;
+}
+
 h2 {
     margin-bottom: 0;
 }
