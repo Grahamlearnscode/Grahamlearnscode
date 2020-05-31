@@ -8,6 +8,7 @@ body {
     font-family: 'Nunito Sans', sans-serif;
     /*font-family: trebuchet, Helvetica, sans-serif;*/
     line-height: 1.3rem;
+    margin-bottom: 32px;
 }
 
 a {

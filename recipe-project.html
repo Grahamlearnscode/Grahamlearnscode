@@ -20,19 +20,21 @@
 <p><em>But Graham,</em> you might be wondering, <em>why is this on your website about learning to code?</em></p>
 <p>Well:
 <ul><li>It'll give me one home to keep recipes and ideas that are currently spread out across various different homes</li>
-    <li>If it's on my own site that I maintain, I'll probably look at it regularly</li>
+    <li>If it's on my own site that I maintain, I'll probably look at it regularly
+      <ul><li>'Out of sight, out of mind' holds true in my experience. I'm aiming for the opposite effect here.</li></ul>
+    </li>
     <li>I can use technology to get exactly what I want out of it.</li> 
     And maybe most importantly:
     <li>I don't yet know what technology I could or should use to do it. So building it <em>should</em> be a great learning experience.</li></ul></p>
 
-<h2>The spec</h2>
-<p>On the homepage of my site, whenever I load it, I want to see a recipe to inspire me. I also want an option to instead see a recipe for something I've made before and enjoyed, in case I'm not in the mood to try something</p>
+<h2>The spec (v1)</h2>
+<p>On the homepage of my site, whenever I load it, I want to see a recipe to inspire me. I also want an option to instead see a recipe for something I've made before and enjoyed, in case I'm not in the mood to try something new.</p>
 
 <p>As a site user on the homepage:
   <ul><li>On page load, I see a random recipe that has not yet been made</li>
     <li>I can click a <strong>Random</strong> button to display another recipe, regardless if it's been made before</li>
     <li>I can click a <strong>New</strong> button to display another random recipe that has not yet been made</li>
-    <li>I can click a <strong>Favourite</strong> button to display a recipe that has previously been made and rated as good.</li>
+    <li>I can click a <strong>Favourite</strong> button to display a recipe that has previously been made and rated as good</li>
     <li>I can click a <strong>View All</strong> button to be taken to the collection of recipes</li></ul></p>
 
     <p>As a site user maintaining the collection of recipes:
@@ -48,6 +50,9 @@
       <li>I can edit the recipe</li>
       <li>I can add a note to the recipe</li></ul>
   </p>
+
+  <h2>The tech (v1)</h2>
+  <p>I've been learning HTML, CSS and Javascript. So the front end will be HTML elements styled with CSS. The moving parts will be handled with JS. The spec makes it clear that recipes will have properties like 'made' and 'rating', so in some sense we're talking about a collection of records here. For those alone, JS objects might be sufficient. But we're also talking about some degree of persistence in changes to those properties. Long-term that means we're probably looking at some kind of database; I've got some experience querying and maintaining existing databases but none in creating one. We'll cross that bridge when we come to it; it might be possible with a small number of records and properties to manage this purely in HTML/CSS/JS.</p> 
 
 </body>
 </html>
