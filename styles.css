@@ -123,3 +123,10 @@ sup a:hover {
 #posts ul ul {
    
 }
+
+.sitePage {
+    border: 4px solid #333;
+    padding: 5px;
+    width: 500px;
+    background-color: #ddd;
+}
