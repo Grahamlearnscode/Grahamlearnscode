@@ -11,11 +11,11 @@
 
 <h1>Recipe project</h1>
 
-<p>It's the end of May 2020 and I've been on this coding journey for around 6 months (somewhere in the region of 100 hours of study and practice). It's time to build something from scratch and discover things organically, alongside syllabus learning.</p>
+<p>I'm somewhere approaching 100 hours into this coding journey. It's time to build something from scratch and discover things organically, alongside syllabus learning.</p>
 
 <h2>The problem</h2>
 <p>The <span class="conversation">"What do you want for dinner tonight?"<br>"Don't know, you?"<br>"I don't know either"<br></span> conversation is something that comes up practically every day in our house. Also my partner and I are currently trying to eat healthier. So there's a need for meal planning.</p>
-<p>There are of course already many resources out there to help with this. We've got a shelf full of recipe books in the kitchen. A few websites bookmarked, some subreddits I know of around meal planning, and of course, Google. Yet we're still pretty terrible at regularly finding culinary inspiration, and at buying ingredients that open up new options when we do the weekly shop.</p>
+<p>There are of course already many resources out there to help with this. We've got a shelf full of recipe books in the kitchen. A few websites bookmarked, some subreddits I know of around meal planning etc. Yet we're still pretty terrible at regularly finding culinary inspiration, and at buying ingredients that open up new options when we do the weekly shop.</p>
 <p><span class="smallPullQuote">Let's solve this problem.</span></p>
 <p><em>But Graham,</em> you might be wondering, <em>why is this on your website about learning to code?</em></p>
 <p>Well:
@@ -29,6 +29,8 @@
 
 <h2>The spec (v1)</h2>
 <p>On the homepage of my site, whenever I load it, I want to see a recipe to inspire me. I also want an option to instead see a recipe for something I've made before and enjoyed, in case I'm not in the mood to try something new.</p>
+
+<h3>User journeys</h3>
 
 <p>As a site user on the homepage:
   <ul><li>On page load, I see a random recipe that has not yet been made</li>
@@ -51,8 +53,16 @@
       <li>I can add a note to the recipe</li></ul>
   </p>
 
+  <h3>Limitations</h3>
+  <ul><li>There's no requirement at this stage for multiple users to have a different experience. State and rating of a recipe is tied to the recipe as a whole, not to any single person's making/rating of it.</li></ul>
+
   <h2>The tech (v1)</h2>
-  <p>I've been learning HTML, CSS and Javascript. So the front end will be HTML elements styled with CSS. The moving parts will be handled with JS. The spec makes it clear that recipes will have properties like 'made' and 'rating', so in some sense we're talking about a collection of records here. For those alone, JS objects might be sufficient. But we're also talking about some degree of persistence in changes to those properties. Long-term that means we're probably looking at some kind of database; I've got some experience querying and maintaining existing databases but none in creating one. We'll cross that bridge when we come to it; it might be possible with a small number of records and properties to manage this purely in HTML/CSS/JS.</p> 
+  <ul><li>Front end: HTML elements styled with CSS</li>
+    <li>Interactivity: The moving parts will be handled with Javascript</li>
+    <li>Objects/records: TBD
+      <ul><li>The spec makes it clear that recipes will have properties like 'made' and 'rating', so in some sense we're talking about a collection of records here. For those alone, JS Objects might be sufficient.</li>
+      <li>Long-term a collection records may be better served by a database; I've got some experience querying and maintaining existing databases but none in creating one. We'll cross that bridge when we come to it; it might be possible with a small number of records and properties to manage this purely in HTML/CSS/JS.</li></ul>
+    </li></ul> 
 
 </body>
 </html>
