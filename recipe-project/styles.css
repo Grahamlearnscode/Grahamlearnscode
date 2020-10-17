@@ -1,0 +1,132 @@
+/*Body text uses Puritan. Headers/emphasis/others use Nunito Sans.*/
+/*Or try Open Sans for body text, try Oswald for emphasis*/
+
+/*//General styling*/
+body {
+    background-color: rgb(68, 72, 87);
+    color: rgb(183, 187, 200);
+    font-family: 'Nunito Sans', sans-serif;
+    /*font-family: trebuchet, Helvetica, sans-serif;*/
+    line-height: 1.3rem;
+    margin-bottom: 32px;
+}
+
+a {
+    color: rgb(163, 172, 200);
+}
+
+p {
+    font-family: 'Puritan', sans-serif;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    background-color: rgba(68, 102, 136, 0.5);
+    padding: 0 2px;
+}
+
+/*//Generic items*/
+.caption {
+    font-size: 0.8rem;
+    margin-top: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    opacity: 0.8;
+}
+
+.pullQuote {
+    font-size: 2rem;
+    padding-left: 5%;
+    line-height: 1;
+    font-style: italic;
+}
+
+.smallPullQuote {
+    font-size: 1.4rem;
+    padding-left: 5%;
+    line-height: 1;
+    font-style: italic;
+}
+
+.conversation {
+    font-style: italic;
+    display: block;
+    margin-left: 5%;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+.box {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    padding: 0 5px;
+}
+
+.footnote {
+    font-size: 0.8rem;
+    margin-top: 24px;
+    margin-bottom: 80px;
+    font-family: 'Nunito Sans', sans-serif;
+    opacity: 0.8;
+}
+
+.footnote p {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+sup a {
+    text-decoration: none;
+}
+
+sup a:hover {
+    text-decoration: underline;
+}
+
+/*//Intro section*/
+#intro p {
+    max-width: 650px;
+    margin-bottom: 30px;
+}
+
+/*//Posts section*/
+#posts {
+    width: 70%;
+}
+
+#posts ul {
+    list-style-type: none;
+    margin-left: 10px;
+    padding: 0;
+}
+
+#posts li {
+    margin-top: 5px;
+}
+#posts li li {
+    margin-top: 0;
+}
+
+/*#posts > ul // this doesn't work as intended. Adding font size/margin into #posts a is a workaround for now*/
+#posts a {
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+#posts a:hover {
+    text-decoration: underline;
+}
+
+#posts ul ul {
+   
+}
+
+.sitePage {
+    border: 4px solid #333;
+    padding: 5px;
+    width: 500px;
+    background-color: #ddd;
+}
