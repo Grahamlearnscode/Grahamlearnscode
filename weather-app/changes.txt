@@ -1,0 +1,9 @@
+Changes I made following completion of the netninja weather app project:
+
+1) Move index.html into my website's parent directory, rename as weather-app.html
+1a) Required references to be updated for stylesheet and scripts
+1b) Bugs: weather icon and day/night graph not loading. References updated. Fixed.
+
+2) City form automatically selects the first result from Accuweather's city search API. This may not always be the user's intended location. To mitigate, I added display of additional geographic details: country, and if in a 'State' or 'Province' administrative region, the State/Provide code.
+
+3) The day/night graphic gives a good read on the broad time of day, but is more meaningful when local time is also displayed. I should add a Date object hh:mm next to the country.
