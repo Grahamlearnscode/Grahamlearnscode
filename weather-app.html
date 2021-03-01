@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="weather-app/styles.css">
 
     <title>Weather app</title>
@@ -15,7 +16,7 @@
 
         <form class="change-location my-4 text-center text-muted">
             <label for="city">Enter a city for weather information</label>
-            <input type="text" name="city" class="form-control p-4">
+            <input type="text" name="city" class="form-control p-4" autocomplete="off">
         </form>
 
         <div class="card shadow-lg rounded d-none">
@@ -25,11 +26,10 @@
             </div>
             <div class="text-muted text-uppercase text-center details">
                 <h5 class="mt-3">City name<span class="state">State (where applicable)</span></h5>
-                <h6 class="country text-capitalize">Country</h6>
+                <h6 class="text-capitalize"><span class="country">Country </span><span id="clock">00:00</h6>
                 <div class="my-4">Weather condition</div>
                 <div class="display-4 my-4">
-                    <span>temp</span>
-                    <span>&deg;C</span>
+                    <span>temp&deg;C</span>
                 </div>
             </div>
 

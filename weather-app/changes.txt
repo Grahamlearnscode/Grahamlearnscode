@@ -6,4 +6,8 @@ Changes I made following completion of the netninja weather app project:
 
 2) City form automatically selects the first result from Accuweather's city search API. This may not always be the user's intended location. To mitigate, I added display of additional geographic details: country, and if in a 'State' or 'Province' administrative region, the State/Provide code.
 
-3) The day/night graphic gives a good read on the broad time of day, but is more meaningful when local time is also displayed. I should add a Date object hh:mm next to the country.
+3) The day/night graphic gives a good read on the broad time of day, but it's more meaningful to display the local time. I added a Date object hh:mm next to the country. Converting this to the city's timezone proved more challenging than I first expected. Upon finding a solution using the timezone returned as part of the city object and the 'date.toLocaleString' method, I was able to log the locale's time to console but ran into issues getting this value into scope to display in the DOM.
+
+4) I tackled the scope issues by refactoring the code. Going back to a pen-and-paper map of how the page should work, which areas needed to be updated on form submission, on page load (if local storage is present), and each second now there's a clock present.
+
+5) Form submission converts all entries to strings, so there was no handling needed for invalid data types (interestingly, it turns out the weather API does return results for cities called e.g. True and 1). However error handling was needed for form submissions that did not return an entry from the API e.g. '123' or 'faketown'. I added this on the basis of the length of the array returned from the getCity API, where 0 length would set the variable cityDetails to false, which could then be handled via an if check anywhere that would use the data.

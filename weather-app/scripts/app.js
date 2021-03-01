@@ -1,96 +1,95 @@
-//app.js for dom manipulation
+// app.js for DOM manipulation
+console.log('app connected');
 
-const cityForm = document.querySelector('form');
 const card = document.querySelector('.card');
-const details = document.querySelector('.details');
-const time = document.querySelector('img.time');
+const cityForm = document.querySelector('.change-location');
 const icon = document.querySelector('.icon img');
+const time = document.querySelector('img.time');
+let details = document.querySelector('.details');
+let clock = document.querySelector('#clock');
+let city = '';
+let cityDetails = '';
+let domCity = '';
+let domState = '';
+let domCountry = '';
+let domWeatherText = '';
+let domTemp = '';
 
-const updateUI = (data) => {
+// get city name, weather, time
+const getDetails = async(city) => {
+  await getCity(city);
+  if(cityDetails){setCityDetails(); //handles invalid inputs
+  const cityId = cityDetails.Key;
+  await getWeather(cityId);
+  setWeatherDetails();
+  let cityTime = convertTZ(new Date(), cityDetails.TimeZone.Name);
+  cityTime = dateFns.format(cityTime, 'HH:mm');
+  updateIcon(cityWeather);
+  setDayNightImg(cityWeather);
+  details.innerHTML = `
+    <h5 class="mt-3">${domCity}<span class="state">${domState}</span></h5>
+    <h6 class="text-capitalize"><span class="country">${domCountry} </span><span id="clock">${cityTime}</h6>
+    <div class="my-4">${domWeatherText}</div>
+    <div class="display-4 my-4">
+        <span>${domTemp}°C</span>
+    </div>
+  `;
+  card.classList.remove('d-none'); //display card in UI
+}};
 
-    const cityDetails = data.cityDetails;
-    const weather = data.weather;
-    // Handle states and provinces
-    let stateHTML = ``;
-        if(cityDetails.AdministrativeArea.EnglishType === 'State' 
-        || cityDetails.AdministrativeArea.EnglishType ==='Province'){
-            stateHTML = `, ${cityDetails.AdministrativeArea.ID}`;
-        };
+// Retrieve local storage on page load
+if (localStorage.city) {
+  city = localStorage.city;
+  console.log(`requesting data from ${city} from local storage`);
+  getDetails(city);
+}
 
-    // update details template
-    details.innerHTML = `
-        <h5 class="mt-3">${cityDetails.EnglishName}<span class="state">${stateHTML}</span></h5>
-        <div class="country text-capitalize">${cityDetails.Country.EnglishName}</div>
-        <div class="my-4">${weather.WeatherText}</div>
-        <div class="display-4 my-4">
-            <span>${weather.Temperature.Metric.Value}</span>
-            <span>&deg;C</span>
-        </div>
-    `;
-
-    // update the night/day & icon images
-    //weather icon images
-    const iconSrc = `weather-app/img/icons/${weather.WeatherIcon}.svg`;
-    icon.setAttribute('src', iconSrc);
-
-    //day/night check using ternary operator
-    let timeSrc = weather.IsDayTime ? 'weather-app/img/day.svg' : 'weather-app/img/night.svg';
-    time.setAttribute('src', timeSrc);
-
-    //unhide card
-    if(card.classList.contains('d-none')){
-        card.classList.remove('d-none');
-    };
-};
-
-const updateCity = async (city) => {
-
-    const cityDetails = await getCity(city);
-    const weather = await getWeather(cityDetails.Key);
-
-    return { cityDetails, weather };
-};
-
-cityForm.addEventListener('submit', e => {
+// User submits form
+cityForm.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    // get city value
-    const city = cityForm.city.value.trim();
-    cityForm.reset();
-
-    // update UI with new city
-    updateCity(city)
-        .then(data => updateUI(data))
-        .catch(err => console.log(err));
-
-    // set local storage
+    city = cityForm.city.value.trim();
     localStorage.setItem('city', city);
+    cityForm.reset();
+    getDetails(city);
 });
 
-
-// load from local storage on page load
-if(localStorage.city){
-    updateCity(localStorage.city)
-    .then(data => updateUI(data))
-    .catch(err => console.log(err));
+// Get current time in city
+function convertTZ(date, tzString) {
+  return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
 };
 
-//// display locale time
+function updateClock() {
+  if(cityDetails){
+  let cityTime = convertTZ(new Date(), cityDetails.TimeZone.Name);
+  cityTime = dateFns.format(cityTime, 'HH:mm');
+  clock = document.querySelector('#clock');
+  clock.innerHTML = `${cityTime}`; // update DOM clock
+}};
 
-// convert UTC to locale
-function convertTZ(date, tzString) {
-    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
-}
+setInterval (updateClock, 1000);
 
-// 
-const tick = () => {
-    const now = new Date();
-    const localeNow = convertTZ(now, data.cityDetails.Timezone.code);
-    const localeClock = dateFns.format(localeNow, 'HH:mm');
-    console.log(localeClock);
-}
-setInterval(tick, 1000);
+function setCityDetails() {
+  domCity = cityDetails.EnglishName;
+  if (cityDetails.AdministrativeArea.EnglishType === 'State' || cityDetails.AdministrativeArea.EnglishType === 'Province' || cityDetails.AdministrativeArea.EnglishType === 'District' )
+    {domState = `, ${cityDetails.AdministrativeArea.ID}`;
+    }else{
+      domState = '';}
+  domCountry = cityDetails.Country.EnglishName;
+}; 
 
+function setWeatherDetails() {
+  if(cityDetails){
+  domWeatherText = cityWeather.WeatherText;
+  domTemp = Math.round(cityWeather.Temperature.Metric.Value);
+}};
 
-///Nope at 88
-///data is not defined. How to get it into scope? Clock only needs to display when card is unhidden BUT setInterval for Tick needs to not be responsive to a page load or anything
+function updateIcon() {
+  const iconSrc = `weather-app/img/icons/${cityWeather.WeatherIcon}.svg`; //weather icons
+  icon.setAttribute('src', iconSrc);
+};
+
+function setDayNightImg() {
+  let timeSrc = cityWeather.IsDayTime ? 'weather-app/img/day.svg' : 'weather-app/img/night.svg';
+time.setAttribute('src', timeSrc);
+console.log(timeSrc);
+};
