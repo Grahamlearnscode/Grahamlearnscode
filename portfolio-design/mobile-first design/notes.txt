@@ -1,0 +1,57 @@
+---
+ACTIONS
+
+* Check compatibility of <picture> element
+* Do mobile-friendly test before and after
+
+
+---
+NOTES
+
+https://search.google.com/test/mobile-friendly
+Google's mobile friendly test
+
+
+"What’s more important is that we focus on the primary objectives of the user first and eliminate any unnecessary friction that aids neither the primary nor the secondary objectives."¹
+¹ https://www.toptal.com/designers/responsive/responsive-design-best-practices
+
+
+---
+WHAT SIZE TO DESIGN FOR?
+https://gs.statcounter.com/screen-resolution-stats
+360x640 is currently the third most-used screen resolution after 1920x1080 and 1366x768
+
+--Tablet
+768x1024 is the most common tablet size. 600x968 is worth considering.
+800x1280 or 1280x800 is the largest commonly used size.
+
+--Don't forget landscape orientation.
+I don't expect that landscape will be used to navigate my site, but doing so should be functional and bug-free.
+
+SITE SHOULD PRESENT OPTIMALLY AT 360w
+SITE SHOULD PRESENT OPTIMALLY AT 640h
+Site should work at 360h
+---
+
+---
+PLACING ELEMENTS
+"People typically expect the main desktop navigation to be at the top; however, on mobile, it should be at the bottom. Thumbs don’t reach the top comfortably."
+"Other interactive elements should also be easy to reach. This means keeping them in the center of the screen because it’s more difficult for thumbs to reach the sides and corners of device screens."¹
+
+
+STYLING ELEMENTS
+"So that they can be tapped with ease, important links and CTAs should have a height of at least 44px (smaller tap targets are bad for usability)."¹
+44x44px as defined by Google
+
+* Use em units, not px (due to retina/hDPI displays)
+** The <picture> element chooses the correct image resolution for this.
+---
+
+
+
+---
+PERFORMANCE
+
+* Lazy load non-vital images (below the fold)
+* Conditional load any elements that won't display on mobile
+* While these may not have a practical impact on a site as basic as mine, it'll be a useful exercise

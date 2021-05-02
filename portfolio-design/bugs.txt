@@ -1,0 +1,19 @@
+OUTSTANDING
+
+
+FIXED
+
+    pf-5: Heading background image too narrow, should cover screen width (with small margin)
+        Added 'background-size:cover' property and margin x 5%
+
+    pf-1: on menu hover, all other content is bumped down by 2px
+    pf-2: on width resize of screen, menu icon moves around
+    pf-3: on expand menu, menu text causes horizontal scroll
+    pf-6: on expand menu, page content is bumped down
+        Moved menu element to 'position:absolute' div within 'position:relative' heading
+
+    pf-7: on hover menu icon within expanded menu, other menu content is bumped down slightly
+        Added 3px bottom margin, which is removed on hover
+
+    pf-4: contact icons at bottom overlap page text. Should clear
+        Messed about with divs a lot. 'background:inherit' on these did it, makes it a solid background of same colour as body background.

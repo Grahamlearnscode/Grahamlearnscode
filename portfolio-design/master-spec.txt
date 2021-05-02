@@ -1,0 +1,19 @@
+Portfolio
+
+Requires, by priority:
+
+1. Clearly display my name and how to contact
+    This should be always visible and accessible
+    2 nav options: Contact (shows email), LinkedIn
+2. Mobile-friendly design
+    Present optimally at 360w x 640h
+3. Easy to read, easy to navigate
+    I always want to be able to access the menu
+4. Clear links to portfolio projects
+5. Commentary on projects
+6. Highlight the most impressive, relevant projects
+
+
+Desirable, by priority
+
+//gmclauchlin.co.uk available £0.86 first year / £11.99 thereafter

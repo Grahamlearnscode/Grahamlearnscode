@@ -1,0 +1,150 @@
+/* Fix .burger position, doing it with margin-left: x% will move around if window width is resized */
+
+
+body {
+    font-size: 1em;
+    background: #eee;
+}
+
+/* Footer contact menu */
+
+.contact-container {
+    background: #8094A4;
+    width: 100%;
+    border-left: 0!important;
+    border-right: 0!important;
+    }
+
+    .contact {
+        /* Google standard is 44. Device:pixel ratio in dev tools is right? Or wrong? 44 here takes up very little real estate */
+        min-height: 88px;
+        text-align: right;
+        font-size: 1.4em;
+        opacity: 0.8;
+        background: inherit;
+        color: #0057A4;
+    color: #eee;
+    background: #0057A4;
+        
+    }
+
+        .contact:hover {
+            opacity: 1;
+            cursor: pointer;
+            font-size: 1.45em;
+        }
+
+ 
+
+        .contact .fa-lg {
+            margin-right: 0.2em;
+    
+        }
+
+    .contact-container .row {
+        margin: 0 auto;
+    }
+
+/* Heading div with background image, name and menu*/
+.heading {
+    /* max-width: 70%; */
+        /* max-height: 500px;
+    min-height: 400px; */
+    margin: 0 auto 0 auto;
+    background-image: url('images/background/bg-mountain-70.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+    .heading-text {
+        padding: 5%;
+        color: #eee;
+        text-shadow: 0 0 5px black;
+    }
+
+        .heading-text h1 {
+            font-size: 3.5em;
+        }
+
+        .heading-text h2 {
+            font-size: 2em;
+        }
+
+    .headshot-pic {
+        border-radius:50%;
+        max-width: 30%;
+        border: 2px solid #ddd;
+        margin-left: 1em;
+        margin-top: 2em;
+    }
+
+.intro {
+    max-width: 80%;
+    margin: 0 2% 0 5%;
+}
+
+.hidden {
+    display:none;
+}
+
+/* top right hamburger menu*/
+.menu-container {
+    position: fixed;
+    right: 3%;
+    top: 3%;
+    text-align: right;
+    border: 4px solid rgba(0,0,0,0.2);
+    border-radius: 4%;
+    padding-top: 1%;
+    padding-right: 1%;
+    background: rgba(220,220,220, 0.9);
+}
+
+    .menu-icon {
+        opacity: 0.8;
+        font-size: 2em;
+        margin-bottom: 3px;
+    }
+
+        .menu-icon:hover {
+            opacity: 1;
+            cursor: pointer;
+            font-size: 2.1em;
+            margin-bottom: 0;
+        }
+
+        
+
+        .menu {
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+
+        .collapsed {
+            border: none;
+            background: none;
+            opacity: 1;
+        }
+
+            .collapsed .menu-icon {
+                font-size: 2em;
+            }
+
+            .collapsed .menu-icon:hover {
+                font-size: 2.1em;
+            }
+
+        .menu ul {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 20px;
+            text-align: right;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .menu ul li {
+            /* border: 1px solid yellow; */
+            padding: 2px 0;
+        }
