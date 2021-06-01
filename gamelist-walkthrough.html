@@ -1,0 +1,248 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Game List - Walkthrough | GrahamLearnsCode</title>
+
+<style> 
+    .section {
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        margin: 10px 0;
+        padding: 5px;
+        }
+    
+    .unit-test {
+        margin: 0 30px;
+        padding: 5px;
+        background: #222;
+    }
+
+    .code-block {
+        margin: 0 30px;
+        padding: 5px;
+        background: #222;
+    }
+    </style>
+
+</head>
+<body>
+   
+<h1>Game List project</h1>
+
+<p>The app is running on this page, open your browser's dev tools console to take a look.
+
+<div class="section"><h2>Overview</h2>
+
+<p>Four people provide a list of 20 videogames each. These will be used as discussion points for a gaming podcast; in the first episode one game from each list will be chosen for discussion; thereafter the lists are going to be merged and in future episodes a random game will be chosen which could come from anyone's list.
+    <ul><li>A game may appear on more than one person's list ('duplicate'). This in itself does not cause problems with the process, it effectively means a game that's a duplicate has a higher chance of being chosen (or chosen <em>earlier</em>, if the process continues until every game is chosen).</li></ul>
+
+The purpose of the application is to choose a game at random, when presented with a list.
+    <ul><li>Once chosen, a game should be removed from the pool so that it may not appear in future executions.
+        <ul><li>If a duplicate of the chosen game exists, this should also be removed.</li></ul></li></ul></p>
+
+<h4>Initial run</h4>
+Four choices should be made, one from each person's list
+
+<h4>Combining lists</h4>
+Thereafter, the lists should be combined ('master list')
+
+<h4>Subsequent runs</h4>
+A game should be chosen from the master list on each execution.</div>
+
+
+<div class="section"><h2>Specification</h2>
+<p>This  will run in the first instance as a console app. It may later be useful to build a UI around this.<br>
+Lists will be presented as four .csv files, one containing each person's list.
+    <ul><li>Given the number of records, it's reasonable to build these directly in the app.js file, an import function is not required.</li>
+    <li>Given the number of records, we can enforce a consistent format so don't need to transform text for any comparisons.</li></ul></p></div>
+
+<div class="section"><h2>Dev Diary</h2>
+
+<h3>Initial Run<br>
+---------------</h3>
+
+<p>The four lists are presented as CSV. I add each of these as an array.</p>
+
+
+<b>DECOMPOSITION:</b> choose an entry at random from an array.
+
+<p>I know Javascript has a <code>Math.random()</code> method which returns a random decimal between 0 and 1. I can multiply this result by the length of the array and I'll get a decimal between 0 and <em>n</em> determined randomly. I can then use <code>Math.floor()</code> to get an integer which is equivalent to an item's index in the array.</p>
+
+<div class="unit-test">Unit test 1:<br>
+<code>
+let abc = ['a', 'b', 'c']<br>
+function chooseABC() {<br>
+	let randomABC = abc[(Math.floor(Math.random()*abc.length))];<br>
+	console.log(randomABC);<br>
+};<br>
+<br>
+chooseABC();<br>
+//Expected 'a' or 'b' or 'c'. Running the function repeatedly should display these with random frequency.<br>
+</code></div>
+
+<p>Cool, that works. I just need to swap out the abc array for my four lists and give the variables more sensible names.</p>
+
+<div class="code-block"><code>
+function chooseGame(host) {<br>
+    let randomGame = host[(Math.floor(Math.random()*host.length))];<br>
+    console.log('game is '+randomGame);<br>
+};<br>
+<br>
+chooseGame(graham);<br>
+chooseGame(al);<br>
+chooseGame(mick);<br>
+chooseGame(stu);<br>
+</code></div>
+<br>
+
+
+<b>CONSIDERATION:</b> verbose logging
+
+<p>The output in this case doesn't show whose list a given game was chosen from. This would be desirable.
+Stackoverflow threads I found suggest that there's no way to natively access a variable name in Javascript. That's a bit surprising, but okay. If this was really necessary, I can probably convert the arrays to objects with a 'Host: x, List: [y,z]' sort of format. But we're only going to do this initial run once so it's workable as is, given I've got the code in front of me when viewing the output anyway.</p>
+
+
+<b>CONSIDERATION:</b> Duplicates
+<p>A few games exist on more than one list. As I'm not amending the lists on first run, there's a chance we'll end up with a duplicate. Again, we're only doing the first run once, if this comes up then we'll re-roll the affected host's choice - purely for speed and simplicity on the part of the process that's only happening once.</p>
+
+
+<b>CONSIDERATION:</b> removing from the pool
+<p>Once chosen, a game should be removed from the array. This is a requirement for the master list, when we get there. For now, again for speed and simplicity, I'll remove the chosen games manually before merging the lists.</p>
+
+
+
+<h3>First run<br>
+-------------</h3>
+<p>I run the function once, and four games are chosen. One is duplicated. I remove the five entries, so we've now got 75 items across the four lists.</p>
+
+
+<h3>Combining lists<br>
+------------------------</h3>
+<p>I combine the lists using the <code>array.concat()</code> method and store it in a variable <code>list</code>.</p>
+
+
+<h3>Subsequent runs<br>
+----------------</h3>
+<p>Now I can choose a game from the master list just by calling <code>chooseGame(list);</code>. Neat.</p>
+
+
+<b>CONSIDERATION:</b> who listed it?
+<p>In this implementation, we've lost visibility of who originally listed the game. That wasn't in the original spec, but it's desirable. That probably means refactoring the arrays into objects like I mentioned earlier. Let's come back to that once we've got the duplicates and removing from the pool side of things working (does that mean more to refactor? Probably. But it means it's usable in the meantime; let's call an array-only version of this my MVP).</p>
+
+
+<h3>Removing a chosen game<br>
+----------------------------------------</h3>
+<p>The function that chooses the game already has the index in the array. So I just need to call the <code>array.splice()</code> method at the relevant point. I haven't used this for a while, it's worth testing it'll work the way I think in combination with the random choice.</p>
+
+<div class="unit-test">Unit test 2:<br>
+<code>
+let abc = ['a', 'b', 'c'];<br>
+abc.splice(1,1);<br>
+console.log(abc) // Expected ['a', 'c']<br>
+</code></div>
+
+<p>Okay, that part is fine. I then started writing unit test 3 and found that my original function is a little unfit for purpose. The random choice is inherently tied to the array item, I can't easily take that same random choice and access other properties of it (i.e. its position). From unit test 1 earlier:</p>
+<code>let randomABC = abc[(Math.floor(Math.random()*abc.length))];</code>
+<p>So...I could use <code>indexOf()</code> to work backwards to the position, or I can refactor the code to separate 'choose a random index' and 'retrieve the name of the item at that index'. My first thought is the refactor is better for readability:</p>
+
+<div class="code-block"><code>
+let abc = ['a', 'b', 'c'];<br>
+<br>
+function chooseABC() {<br>
+	let randomPosition = Math.floor(Math.random()*abc.length);<br>
+	let randomABC = abc[randomPosition];<br>
+	console.log(randomABC + ' from position ' + randomPosition);<br>
+};<br>
+<br>
+chooseABC(abc);<br>
+</code></div>
+
+<p>Does that work okay if there are duplicates? Turns out it's fine and if ran on an array <code>['a','b','b','c']</code> it can return <code>'b' from position 1</code> or <code>'b' from position 2</code> no problem. That makes sense, there's no reason why it shouldn't do that. But I should factor in duplicates to my unit tests from here on out.</p>
+
+<div class="unit-test">Unit test 3, combine the random function with the splice() method:
+    <br>
+<code>
+let abbc = ['a', 'b', 'b', 'c'];<br>
+<br>
+function chooseABBC() {<br>
+	let randomPosition = Math.floor(Math.random()*abbc.length);<br>
+	let randomABBC = abbc[randomPosition];<br>
+	console.log(randomABBC + ' from position ' + randomPosition);<br>
+	abbc.splice(randomPosition,1);<br>
+	console.log(abbc);<br>
+};<br>
+<br>
+chooseABBC(abbc);<br>
+<br>
+//Expected: a chosen item and position logged, followed by the original array minus the item chosen above.
+</code></div>
+
+<p>That's working fine. I implement that in my chooseGame() function. While I'm refactoring in there, I remove references to the <code>host</code> variable, since we're just working with <code>list</code> now.</p>
+
+<div class="code-block"><code>
+function chooseGame() {<br>
+    let randomPosition = Math.floor(Math.random()*list.length);<br>
+    console.log(randomPosition);<br>
+    let randomGame = list[randomPosition];<br>
+    console.log('game is '+randomGame);<br>
+    list.splice(randomPosition, 1); //Remove the chosen game from the pool<br>
+};<br>
+<br>
+chooseGame();
+</code></div>
+
+
+<h3>Remove duplicates<br>
+-----------------------------</h3>
+<p>Okay, all that's left from the original requirement is: in the event that the chosen game also appears elsewhere in the list, remove the duplicate from the pool. Note that we're not de-duping the list prior to processing, a game can and should appear multiple times if multiple people chose it; it effectively has a 2x chance of being chosen on any execution. What we don't want it is the same game being <em>chosen</em> multiple times. Thankfully on reading up on array methods for the last section I spotted the <code>array.contains()</code> method, so I can just tag that on to the end of the function once the chosen game is removed from the pool, in the form of an <code>if</code> check.</p>
+
+<div class="code-block"><code>
+	...<br>
+	console.log('game is '+randomGame);<br>
+    	list.splice(randomPosition, 1); //Remove the chosen game from the pool<br>
+	if(list.includes(randomGame)) {/*some code to remove the duplicate using splice and indexOf*/}<br>
+</code></div>
+
+<p>As it stands, I don't think any game is represented more than twice. But I think I can account for that case about as easily as I could do eyeballing a list of 80 entries. AND it's a real-world example of recursion! </p>
+
+<div class="code-block"><code>
+function checkDupe() {<br>
+    if(list.includes(randomGame)){<br>
+        console.log('dupe');<br>
+        list.splice(list.indexOf(randomGame),1);<br>
+	console.log(list);<br>
+        checkDupe(list);<br>
+    };<br>
+};<br>
+</code></div>
+
+<p>I'm <em>pretty</em> sure the principle is sound here. Check for existence of an entry within an array. If found, remove. Then on line 5, do the same thing over again, but <em>only</em> if the item is still found on the list; else the function exits gracefully, so we don't get caught in an infinite loop.</p>
+
+<div class="unit-test">Unit test 4, having added the above function as the last line of my <code>chooseGame()</code> function:
+
+<code><br>
+let list = [<br>
+    'portal',<br>
+    'portal',<br>
+    'portal',<br>
+    'halo',<br>
+    'portal',<br>
+    'c&c',<br>
+    'c&c',<br>
+]<br>
+<br>
+chooseGame();<br>
+<br>
+//Expected: Case A, Halo is chosen, we shouldn't see any duplicate logging and should end up with a 6-item list. Case B, C&C is chosen, we should see duplicate logging once and get a 5-item list. Case C, Portal is chosen, we should see duplicate logging three times and get a 3-item list.<br>
+</code></div>
+
+<p>That works! I'm genuinely a little proud of myself for spotting the opportunity to implement something I didn't entirely grasp the theory of when I first ran into it. Thumbs down to every tutorial that uses Fibonacci for recursion and massive thumbs up to whoever wrote the 'you're sitting in a cinema and you ask the person in front of you to pass the popcorn from the front, they ask the person in front of them and so on' explanation that made it click for me.</p></div>
+
+
+
+<script src="gamelist.js"></script>
+</body>
+</html>
