@@ -10,7 +10,7 @@
     .section {
         border: 2px solid #ccc;
         border-radius: 5px;
-        margin: 10px 0;
+        margin: 10px;
         padding: 5px;
         }
     
@@ -75,8 +75,8 @@ Lists will be presented as four .csv files, one containing each person's list.
 <code>
 let abc = ['a', 'b', 'c']<br>
 function chooseABC() {<br>
-	let randomABC = abc[(Math.floor(Math.random()*abc.length))];<br>
-	console.log(randomABC);<br>
+	&emsp;let randomABC = abc[(Math.floor(Math.random()*abc.length))];<br>
+	&emsp;console.log(randomABC);<br>
 };<br>
 <br>
 chooseABC();<br>
@@ -87,8 +87,8 @@ chooseABC();<br>
 
 <div class="code-block"><code>
 function chooseGame(host) {<br>
-    let randomGame = host[(Math.floor(Math.random()*host.length))];<br>
-    console.log('game is '+randomGame);<br>
+    &emsp;let randomGame = host[(Math.floor(Math.random()*host.length))];<br>
+    &emsp;console.log('game is '+randomGame);<br>
 };<br>
 <br>
 chooseGame(graham);<br>
@@ -152,9 +152,9 @@ console.log(abc) // Expected ['a', 'c']<br>
 let abc = ['a', 'b', 'c'];<br>
 <br>
 function chooseABC() {<br>
-	let randomPosition = Math.floor(Math.random()*abc.length);<br>
-	let randomABC = abc[randomPosition];<br>
-	console.log(randomABC + ' from position ' + randomPosition);<br>
+	&emsp;let randomPosition = Math.floor(Math.random()*abc.length);<br>
+	&emsp;let randomABC = abc[randomPosition];<br>
+	&emsp;console.log(randomABC + ' from position ' + randomPosition);<br>
 };<br>
 <br>
 chooseABC(abc);<br>
@@ -168,11 +168,11 @@ chooseABC(abc);<br>
 let abbc = ['a', 'b', 'b', 'c'];<br>
 <br>
 function chooseABBC() {<br>
-	let randomPosition = Math.floor(Math.random()*abbc.length);<br>
-	let randomABBC = abbc[randomPosition];<br>
-	console.log(randomABBC + ' from position ' + randomPosition);<br>
-	abbc.splice(randomPosition,1);<br>
-	console.log(abbc);<br>
+	&emsp;let randomPosition = Math.floor(Math.random()*abbc.length);<br>
+	&emsp;let randomABBC = abbc[randomPosition];<br>
+	&emsp;console.log(randomABBC + ' from position ' + randomPosition);<br>
+	&emsp;abbc.splice(randomPosition,1);<br>
+	&emsp;console.log(abbc);<br>
 };<br>
 <br>
 chooseABBC(abbc);<br>
@@ -184,11 +184,11 @@ chooseABBC(abbc);<br>
 
 <div class="code-block"><code>
 function chooseGame() {<br>
-    let randomPosition = Math.floor(Math.random()*list.length);<br>
-    console.log(randomPosition);<br>
-    let randomGame = list[randomPosition];<br>
-    console.log('game is '+randomGame);<br>
-    list.splice(randomPosition, 1); //Remove the chosen game from the pool<br>
+    &emsp;let randomPosition = Math.floor(Math.random()*list.length);<br>
+    &emsp;console.log(randomPosition);<br>
+    &emsp;let randomGame = list[randomPosition];<br>
+    &emsp;console.log('game is '+randomGame);<br>
+    &emsp;list.splice(randomPosition, 1); //Remove the chosen game from the pool<br>
 };<br>
 <br>
 chooseGame();
@@ -202,24 +202,24 @@ chooseGame();
 <div class="code-block"><code>
 	...<br>
 	console.log('game is '+randomGame);<br>
-    	list.splice(randomPosition, 1); //Remove the chosen game from the pool<br>
-	if(list.includes(randomGame)) {/*some code to remove the duplicate using splice and indexOf*/}<br>
+    &emsp;list.splice(randomPosition, 1); //Remove the chosen game from the pool<br>
+	&emsp;if(list.includes(randomGame)) {/*some code to remove the duplicate using splice and indexOf*/}<br>
 </code></div>
 
 <p>As it stands, I don't think any game is represented more than twice. But I think I can account for that case about as easily as I could do eyeballing a list of 80 entries. AND it's a real-world example of recursion! </p>
 
 <div class="code-block"><code>
 function checkDupe() {<br>
-    if(list.includes(randomGame)){<br>
-        console.log('dupe');<br>
-        list.splice(list.indexOf(randomGame),1);<br>
-	console.log(list);<br>
-        checkDupe(list);<br>
-    };<br>
+    &emsp; if(list.includes(randomGame)){<br>
+        &emsp;&emsp;&emsp; console.log('dupe');<br>
+        &emsp;&emsp;&emsp; list.splice(list.indexOf(randomGame),1);<br>
+        &emsp;&emsp;&emsp;console.log(list);<br>
+        &emsp;&emsp;&emsp;checkDupe(list);<br>
+        &emsp;};<br>
 };<br>
 </code></div>
 
-<p>I'm <em>pretty</em> sure the principle is sound here. Check for existence of an entry within an array. If found, remove. Then on line 5, do the same thing over again, but <em>only</em> if the item is still found on the list; else the function exits gracefully, so we don't get caught in an infinite loop.</p>
+<p>I'm <em>pretty</em> sure the principle is sound here. Check for existence of an entry within an array. If found, remove. Then on line 6, do the same thing over again, but <em>only</em> if the item is still found on the list; else the function exits gracefully, so we don't get caught in an infinite loop.</p>
 
 <div class="unit-test">Unit test 4, having added the above function as the last line of my <code>chooseGame()</code> function:
 
