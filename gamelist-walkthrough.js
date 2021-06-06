@@ -81,7 +81,6 @@ function chooseGame() {
     let randomPosition = Math.floor(Math.random()*list.length);
     randomGame = list[randomPosition];
     console.log('Chosen game is '+randomGame);
-    logOwner();
     list.splice(randomPosition, 1); //Remove the chosen game from the pool
     checkDupe(list);
 };
@@ -93,18 +92,6 @@ function checkDupe() {
         checkDupe(list);
     };
 };
-
-function logOwner() {
-    if (graham.includes(randomGame)) {
-        owner.push("Graham");}
-    if (al.includes(randomGame)) {
-        owner.push("Al");}
-    if (mick.includes(randomGame)) {
-        owner.push("Mick");}
-    if (stu.includes(randomGame)) {
-        owner.push("Stu");}
-    console.log("owned by",owner);
-}
 
 chooseGame();
 console.log('list is now: ', list);
